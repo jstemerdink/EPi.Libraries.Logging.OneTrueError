@@ -21,7 +21,7 @@ after_build:
 
 - cmd: nuget pack EPi.Libraries.Logging.OneTrueError.Configuration\EPi.Libraries.Logging.OneTrueError.Configuration.csproj -version "%GitVersion_NuGetVersion%" -prop "target=%CONFIGURATION%"
 - cmd: appveyor PushArtifact "EPi.Libraries.Logging.OneTrueError.Configuration.%GitVersion_NuGetVersion%.nupkg"
-- 7z a EPi.Libraries.Logging.OneTrueError.%GitVersion_NuGetVersion%.zip %APPVEYOR_BUILD_FOLDER%\EPi.Libraries.Logging.OneTrueError.Configuration\bin\Release\EPi.Libraries.Logging.OneTrueError.Configuration.dll
+- 7z a EPi.Libraries.Logging.OneTrueError.Configuration.%GitVersion_NuGetVersion%.zip %APPVEYOR_BUILD_FOLDER%\EPi.Libraries.Logging.OneTrueError.Configuration\bin\Release\EPi.Libraries.Logging.OneTrueError.Configuration.dll
 - cmd: appveyor PushArtifact "EPi.Libraries.Logging.OneTrueError.Configuration.%GitVersion_NuGetVersion%.zip"
 before_package:
 - ps: >-
