@@ -147,9 +147,6 @@
     <None Include="README.md" />
     <None Include="web.config.install.xdt" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Nuget\ReadMe.txt" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
