@@ -1,5 +1,5 @@
 version: 1.0.{build}
-image: Visual Studio 2013
+image: Visual Studio 2015
 configuration: Release
 environment:
   github_token: 'secure: TaDEavUfTj6EgwcO7y5njQVS5Z9bBU/fVFuSApo5XEO6FSBT5UzJQmyJjbhIFDZb'
