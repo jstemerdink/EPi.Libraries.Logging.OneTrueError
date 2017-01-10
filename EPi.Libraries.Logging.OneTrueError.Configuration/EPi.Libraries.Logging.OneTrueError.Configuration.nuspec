@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/jstemerdink/EPi.Libraries.Logging.OneTrueError/</projectUrl>
+    <iconUrl>http://jstemerdink.net/images/js-nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Add OneTrueError logging to your site.</releaseNotes>
+    <copyright>Copyright © Jeroen Stemerdink 2017</copyright>
+    <tags>logging onetrueerror</tags>
+    <dependencies>
+      <dependency id="EPiServer.CMS" version="10.0.1" />
+      <dependency id="Microsoft.AspNet.Mvc" version="5.0.0" />
+      <dependency id="OneTrueError.Client" version="1.0.0" />
+      <dependency id="OneTrueError.Client.AspNet.Mvc5" version="1.0.1" />
+      <dependency id="Jos.ContentJson" version="2.10.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="web.config.install.xdt" target="content" />
+    <file src="readme.txt" target="" />
+  </files>
+</package>

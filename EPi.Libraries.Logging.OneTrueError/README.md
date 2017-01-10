@@ -10,11 +10,7 @@
 This will add OneTrueError logging to your EPiServer site
 See [OneTrueError site](http://onetrueerror.com/) for information about OneTrueError.
 
-## Parts
-[Logger](EPi.Libraries.Logging.OneTrueError/README.md)  
-[Configuration](EPi.Libraries.Logging.OneTrueError.Configuration/README.md)  
-
-
 > *Powered by ReSharper*
 
 > [![image](http://resources.jetbrains.com/assets/media/open-graph/jetbrains_250x250.png)](http://jetbrains.com)
+

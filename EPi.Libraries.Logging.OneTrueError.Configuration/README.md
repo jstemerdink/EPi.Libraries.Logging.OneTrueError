@@ -1,4 +1,4 @@
-# EPi.Libraries.Logging.OneTrueError
+# EPi.Libraries.Logging.OneTrueError.Configuration
 
 [![Build status](https://ci.appveyor.com/api/projects/status/p9wb03tyde11si8s/branch/master?svg=true)](https://ci.appveyor.com/project/jstemerdink/epi-libraries-logging-onetrueerror/branch/master)
 [![GitHub version](https://badge.fury.io/gh/jstemerdink%2FEPi.Libraries.Logging.OneTrueError.svg)](http://badge.fury.io/gh/jstemerdink%2FEPi.Libraries.Logging.OneTrueError)
@@ -10,11 +10,7 @@
 This will add OneTrueError logging to your EPiServer site
 See [OneTrueError site](http://onetrueerror.com/) for information about OneTrueError.
 
-## Parts
-[Logger](EPi.Libraries.Logging.OneTrueError/README.md)  
-[Configuration](EPi.Libraries.Logging.OneTrueError.Configuration/README.md)  
-
-
 > *Powered by ReSharper*
 
 > [![image](http://resources.jetbrains.com/assets/media/open-graph/jetbrains_250x250.png)](http://jetbrains.com)
+
