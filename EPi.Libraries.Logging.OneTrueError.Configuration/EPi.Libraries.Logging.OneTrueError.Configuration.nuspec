@@ -19,7 +19,6 @@
       <dependency id="Microsoft.AspNet.Mvc" version="5.0.0" />
       <dependency id="OneTrueError.Client" version="1.0.0" />
       <dependency id="OneTrueError.Client.AspNet.Mvc5" version="1.0.1" />
-      <dependency id="Jos.ContentJson" version="2.10.0" />
     </dependencies>
   </metadata>
   <files>
