@@ -169,13 +169,16 @@
   <ItemGroup>
     <Compile Include="EPiServerContextProvider.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ErrorContractResolver.cs" />
     <Compile Include="OneTrueErrorInitialization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="EPi.Libraries.Logging.OneTrueError.Configuration.nuspec" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="README.md" />
     <None Include="web.config.install.xdt" />
   </ItemGroup>

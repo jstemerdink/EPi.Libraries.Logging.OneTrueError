@@ -1,4 +1,4 @@
-﻿// Copyright © 2016 Jeroen Stemerdink.
+﻿// Copyright © 2017 Jeroen Stemerdink.
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
 // files (the "Software"), to deal in the Software without
@@ -21,10 +21,9 @@ namespace EPi.Libraries.Logging.OneTrueError.Configuration
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
 
-    using EPiServer.Framework.Serialization;
+    using EPiServer.Framework.Serialization.Json;
     using EPiServer.Globalization;
     using EPiServer.ServiceLocation;
     using EPiServer.Web.Routing;
@@ -32,6 +31,8 @@ namespace EPi.Libraries.Logging.OneTrueError.Configuration
     using global::OneTrueError.Client.ContextProviders;
     using global::OneTrueError.Client.Contracts;
     using global::OneTrueError.Client.Reporters;
+
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Class EPiServerContextProvider.
@@ -60,13 +61,12 @@ namespace EPi.Libraries.Logging.OneTrueError.Configuration
         public ContextCollectionDTO Collect(IErrorReporterContext context)
         {
             IContentRouteHelper contentRouteRouteHelper = null;
-            IObjectSerializerFactory serializerFactory = null;
-            string contentData = string.Empty;
+            JsonSerializer serializer = CreateSerializer();
+            string contentData;
 
             try
             {
                 contentRouteRouteHelper = ServiceLocator.Current.GetInstance<IContentRouteHelper>();
-                serializerFactory = ServiceLocator.Current.GetInstance<IObjectSerializerFactory>();
             }
             catch (ActivationException)
             {
@@ -77,14 +77,11 @@ namespace EPi.Libraries.Logging.OneTrueError.Configuration
                 return new ContextCollectionDTO(this.Name, new Dictionary<string, string>());
             }
 
-            if (serializerFactory != null)
+            // TODO: Check whether to use invariant culture 
+            using (StringWriter stringWriter = new StringWriter(ContentLanguage.PreferredCulture))
             {
-                // TODO: Check whether to use invariant culture 
-                using (StringWriter stringWriter = new StringWriter(ContentLanguage.PreferredCulture))
-                {
-                    serializerFactory.GetSerializer("application/json").Serialize(stringWriter, contentRouteRouteHelper.Content);
-                    contentData = stringWriter.ToString();
-                }
+                serializer.Serialize(stringWriter, contentRouteRouteHelper.Content);
+                contentData = stringWriter.ToString();
             }
 
             Dictionary<string, string> contextInfo = new Dictionary<string, string>
@@ -96,15 +93,34 @@ namespace EPi.Libraries.Logging.OneTrueError.Configuration
                                                              },
                                                              {
                                                                  "ContentId",
-                                                                 contentRouteRouteHelper?.Content?.ContentLink.ID.ToString()
+                                                                 contentRouteRouteHelper
+                                                                     .Content?.ContentLink.ID
+                                                                     .ToString()
                                                              },
-                                                             {
-                                                                 "ContentData",
-                                                                 contentData
-                                                             }
+                                                             { "ContentData", contentData }
                                                          };
 
             return new ContextCollectionDTO(this.Name, contextInfo);
+        }
+
+        /// <summary>
+        /// Creates the serializer.
+        /// </summary>
+        /// <returns>The <see cref="JsonSerializer"/>.</returns>
+        private static JsonSerializer CreateSerializer()
+        {
+            ErrorContractResolver jsonResolver = new ErrorContractResolver();
+
+            JsonSerializer jsonSerializer = new JsonSerializer();
+            jsonSerializer.Converters.Add(new DateTimeConverter());
+            jsonSerializer.MissingMemberHandling = MissingMemberHandling.Ignore;
+            jsonSerializer.TypeNameHandling = TypeNameHandling.Objects;
+            jsonSerializer.MaxDepth = 25;
+            jsonSerializer.NullValueHandling = NullValueHandling.Ignore;
+            jsonSerializer.Formatting = Formatting.Indented;
+            jsonSerializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            jsonSerializer.ContractResolver = jsonResolver;
+            return jsonSerializer;
         }
     }
 }
