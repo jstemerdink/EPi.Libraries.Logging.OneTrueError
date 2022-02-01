@@ -28,20 +28,20 @@ before_package:
     Write-Host -NoNewline "Installing NuGet 3.3.0..."
 
     if (Test-Path 'C:\Tools\NuGet3') { $nugetDir = 'C:\Tools\NuGet3' } else { $nugetDir = 'C:\Tools\NuGet' }
-deploy:
-- provider: NuGet
-  server: https://www.myget.org/F/epi-libraries/api/v2/package
-  api_key:
-    secure: 9Z+KYPk2hI7hg9kYLv/N13fvoqcYCP96isNUkRrKu0v87cw85H62oe/DCwpqvBXF
-  skip_symbols: true
-  artifact: /.*\.nupkg/
-  on:
-    branch: develop             # release from develop branch only
+#deploy:
+#- provider: NuGet
+#  server: https://www.myget.org/F/epi-libraries/api/v2/package
+#  api_key:
+#    secure: 9Z+KYPk2hI7hg9kYLv/N13fvoqcYCP96isNUkRrKu0v87cw85H62oe/DCwpqvBXF
+#  skip_symbols: true
+#  artifact: /.*\.nupkg/
+#  on:
+#    branch: develop             # release from develop branch only
     #appveyor_repo_tag: true     # deploy on tag push only
-- provider: GitHub
-  auth_token:
-    secure: TaDEavUfTj6EgwcO7y5njQVS5Z9bBU/fVFuSApo5XEO6FSBT5UzJQmyJjbhIFDZb
-  artifact: /.*\.zip/
-  on:
-    branch: master              # release from master branch only
+#- provider: GitHub
+#  auth_token:
+#    secure: TaDEavUfTj6EgwcO7y5njQVS5Z9bBU/fVFuSApo5XEO6FSBT5UzJQmyJjbhIFDZb
+#  artifact: /.*\.zip/
+#  on:
+#    branch: master              # release from master branch only
     #appveyor_repo_tag: true     # deploy on tag push only
